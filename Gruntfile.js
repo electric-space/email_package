@@ -12,8 +12,23 @@ module.exports = function(grunt) {
               files: {
                 'src/index.html': ['src/template.html']
               }
+            },
+            
+            
+            
+            
+          },
+          
+        copy:{
+            main:{
+                files: [
+                    {expand: true, flatten: true, src: ['src/img/*.gif','src/img/*.jpg','src/img/*.png'], dest: 'dist/img'},
+                    {expand: true, flatten: true, src: ['src/index.html'], dest: 'dist/'}
+                ],
+                
             }
-          }
+              
+        }
 		
 		
 		
@@ -21,6 +36,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-premailer');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	
-	grunt.registerTask('inline',['premailer']);
+	grunt.registerTask('default',['premailer', 'copy']);
 }
